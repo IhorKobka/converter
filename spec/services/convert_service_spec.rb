@@ -67,5 +67,18 @@ describe ConvertService, type: :service do
         expect(subject.call).to eq output
       end
     end
+
+    context 'with invalid data' do
+      let(:keys) { %w(fake_key) }
+      let(:input) do
+        [
+          HashWithIndifferentAccess.new(country: 'UK', school: 'Cambridge', class: 'Grade 11', student_counts: 14)
+        ]
+      end
+
+      it 'raises error' do
+        expect { subject.call }.to raise_error ConvertError
+      end
+    end
   end
 end

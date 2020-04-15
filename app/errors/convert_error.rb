@@ -1,0 +1,1 @@
+class ConvertError < StandardError; end

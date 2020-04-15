@@ -10,6 +10,8 @@ class ConvertService
     return data if keys.empty?
 
     convert_object
+  rescue KeyError => e
+    raise ConvertError, e
   end
 
   private
