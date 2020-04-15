@@ -1,30 +1,41 @@
 class ConvertService
-  attr_reader :data, :expected_keys, :skipped_keys
+  attr_reader :data, :keys
 
   def initialize(params)
-    @data =params[:data]
-    @expected_keys = %w(country school class student_counts)
-    @skipped_keys = params[:skipped_keys] || []
+    @data = [
+      { "country": "US", "school": "Stanford", "class": "Grade 11", "student_counts": 10},
+      { "country": "US", "school": "MIT", "class": "Grade 7", "student_counts": 12},
+
+      { "country": "UK", "school": "Cambridge", "class": "Grade 11", "student_counts": 19 },
+      { "country": "UK", "school": "Cambridge", "class": "Grade 12", "student_counts": 14 },
+      { "country": "UK", "school": "Cambridge", "class": "Grade 12", "student_counts": 16 },
+
+      { "country": "UA", "school": "KPI", "class": "Grade 7", "student_counts": 20 },
+    ]
+    @keys = params[:keys] || []
   end
 
   def call
-    keys = expected_keys - skipped_keys
-    object = keys.length > 1 ? {} : []
-    data.each_with_object(object) { |row, obj| modify_object(keys, row, obj) }
+    return data if keys.empty?
+
+    convert_object
   end
 
   private
 
-  def modify_object(keys, row, object)
-    keys.each do |key|
-      value = row[key]
-      value = value.to_i if key == 'student_counts'
-      if key == keys.last
-        object << { key => value }
-      else
-        object[value] ||= key == keys[-2] ? [] : {}
-        object = object[value]
+  def convert_object
+    object = {}
+    data.group_by { |d| d.fetch_values(*keys) }.each_with_object(object) do |(grouped_keys, values), obj|
+      grouped_keys.each do |key|
+        if key == grouped_keys.last
+          obj[key] ||= []
+          obj[key] << values.map { |value| value.except(*keys) }
+        else
+          obj[key] ||= {}
+        end
+        obj = obj[key]
       end
     end
+    object
   end
 end
