@@ -1,0 +1,44 @@
+{
+  "US": {
+    "Stanford": {
+      "Grade 11": [
+        {
+          "student_counts": 10
+        }
+      ]
+    },
+    "MIT": {
+      "Grade 7": [
+        {
+          "student_counts": 12
+        }
+      ]
+    }
+  },
+  "UK": {
+    "Cambridge": {
+      "Grade 11": [
+        {
+          "student_counts": 19
+        }
+      ],
+      "Grade 12": [
+        {
+          "student_counts": 14
+        },
+        {
+          "student_counts": 16
+        }
+      ]
+    }
+  },
+  "UA": {
+    "KPI": {
+      "Grade 7": [
+        {
+          "student_counts": 20
+        }
+      ]
+    }
+  }
+}

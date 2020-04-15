@@ -3,7 +3,7 @@ class ConvertService
 
   def initialize(params)
     @data =params[:data]
-    @expected_keys = [:country, :school, :class, :student_counts]
+    @expected_keys = %w(country school class student_counts)
     @skipped_keys = params[:skipped_keys] || []
   end
 
@@ -18,6 +18,7 @@ class ConvertService
   def modify_object(keys, row, object)
     keys.each do |key|
       value = row[key]
+      value = value.to_i if key == 'student_counts'
       if key == keys.last
         object << { key => value }
       else
