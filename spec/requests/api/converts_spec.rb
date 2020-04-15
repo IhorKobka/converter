@@ -8,8 +8,8 @@ describe 'Converts', :type => :request do
     }
   end
 
-  context 'without skipped keys' do
-    let(:keys) { [] }
+  context 'without keys' do
+    let(:keys) { nil }
     let(:input) { JSON.parse(File.read(Rails.root.join('spec/fixtures/input.json'))) }
 
     it 'converts input' do
@@ -19,7 +19,7 @@ describe 'Converts', :type => :request do
     end
   end
 
-  context 'with skipped keys' do
+  context 'with keys' do
     let(:keys) { [:country, :school, :class] }
     let(:input) { JSON.parse(File.read(Rails.root.join('spec/fixtures/input.json'))) }
     let(:output) { JSON.parse(File.read(Rails.root.join('spec/fixtures/output.json'))) }

@@ -9,7 +9,7 @@ describe ConvertService, type: :service do
   subject { described_class.new(params) }
 
   describe '#call' do
-    context 'without skipped keys' do
+    context 'without keys' do
       let(:keys) { [] }
       let(:input) { JSON.parse(File.read(Rails.root.join('spec/fixtures/input.json'))) }
 
@@ -18,7 +18,7 @@ describe ConvertService, type: :service do
       end
     end
 
-    context 'with skipped keys' do
+    context 'with keys' do
       let(:keys) { %w(country school) }
       let(:input) do
         [
