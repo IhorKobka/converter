@@ -2,7 +2,7 @@ describe ConvertService, type: :service do
   let(:params) do
     {
       data: input,
-      skipped_keys: skipped_keys
+      keys: keys
     }
   end
 
@@ -10,17 +10,16 @@ describe ConvertService, type: :service do
 
   describe '#call' do
     context 'without skipped keys' do
-      let(:skipped_keys) { [] }
+      let(:keys) { [] }
       let(:input) { JSON.parse(File.read(Rails.root.join('spec/fixtures/input.json'))) }
-      let(:output) { JSON.parse(File.read(Rails.root.join('spec/fixtures/output.json'))) }
 
       it 'converts input' do
-        expect(subject.call).to eq output
+        expect(subject.call).to eq input
       end
     end
 
     context 'with skipped keys' do
-      let(:skipped_keys) { %w(country school) }
+      let(:keys) { %w(country school) }
       let(:input) do
         [
           HashWithIndifferentAccess.new(country: 'UK', school: 'Cambridge', class: 'Grade 12', student_counts: 14),
@@ -29,7 +28,12 @@ describe ConvertService, type: :service do
       end
       let(:output) do
         {
-          'Grade 12' => [{ 'student_counts' => 14 }, { 'student_counts' => 16 }]
+          "UK" => {
+            "Cambridge" => [
+              {"class"=>"Grade 12", "student_counts"=>14},
+              {"class"=>"Grade 12", "student_counts"=>16}
+            ]
+          }
         }
       end
 

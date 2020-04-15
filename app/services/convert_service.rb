@@ -2,16 +2,7 @@ class ConvertService
   attr_reader :data, :keys
 
   def initialize(params)
-    @data = [
-      { "country": "US", "school": "Stanford", "class": "Grade 11", "student_counts": 10},
-      { "country": "US", "school": "MIT", "class": "Grade 7", "student_counts": 12},
-
-      { "country": "UK", "school": "Cambridge", "class": "Grade 11", "student_counts": 19 },
-      { "country": "UK", "school": "Cambridge", "class": "Grade 12", "student_counts": 14 },
-      { "country": "UK", "school": "Cambridge", "class": "Grade 12", "student_counts": 16 },
-
-      { "country": "UA", "school": "KPI", "class": "Grade 7", "student_counts": 20 },
-    ]
+    @data = params[:data]
     @keys = params[:keys] || []
   end
 
@@ -29,7 +20,7 @@ class ConvertService
       grouped_keys.each do |key|
         if key == grouped_keys.last
           obj[key] ||= []
-          obj[key] << values.map { |value| value.except(*keys) }
+          values.map { |value| obj[key] << value.except(*keys) }
         else
           obj[key] ||= {}
         end
