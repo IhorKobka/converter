@@ -18,7 +18,7 @@ describe ConvertService, type: :service do
       end
     end
 
-    context 'with keys' do
+    context 'with keys country and school' do
       let(:keys) { %w(country school) }
       let(:input) do
         [
@@ -34,6 +34,32 @@ describe ConvertService, type: :service do
               {"class"=>"Grade 12", "student_counts"=>16}
             ]
           }
+        }
+      end
+
+      it 'converts input' do
+        expect(subject.call).to eq output
+      end
+    end
+
+    context 'with keys class' do
+      let(:keys) { %w(class) }
+      let(:input) do
+        [
+          HashWithIndifferentAccess.new(country: 'UK', school: 'Cambridge', class: 'Grade 11', student_counts: 14),
+          HashWithIndifferentAccess.new(country: 'UK', school: 'Cambridge', class: 'Grade 12', student_counts: 14),
+          HashWithIndifferentAccess.new(country: 'UK', school: 'Cambridge', class: 'Grade 12', student_counts: 16)
+        ]
+      end
+      let(:output) do
+        {
+          "Grade 11" => [
+            {"country" => "UK", "school" => "Cambridge", "student_counts" => 14}
+          ],
+          "Grade 12" => [
+            {"country" => "UK", "school" => "Cambridge", "student_counts" => 14},
+            {"country" => "UK", "school" => "Cambridge", "student_counts" => 16}
+          ]
         }
       end
 

@@ -3,36 +3,36 @@
     "country": "US",
     "school": "Stanford",
     "class": "Grade 11",
-    "student_counts": "10"
+    "student_counts": 10
   },
   {
     "country": "UK",
     "school": "Cambridge",
     "class": "Grade 11",
-    "student_counts": "19"
+    "student_counts": 19
   },
   {
     "country": "UK",
     "school": "Cambridge",
     "class": "Grade 12",
-    "student_counts": "14"
+    "student_counts": 14
   },
   {
     "country": "US",
     "school": "MIT",
     "class": "Grade 7",
-    "student_counts": "12"
+    "student_counts": 12
   },
   {
     "country": "UA",
     "school": "KPI",
     "class": "Grade 7",
-    "student_counts": "20"
+    "student_counts": 20
   },
   {
     "country": "UK",
     "school": "Cambridge",
     "class": "Grade 12",
-    "student_counts": "16"
+    "student_counts": 16
   }
 ]

@@ -3,14 +3,14 @@
     "Stanford": {
       "Grade 11": [
         {
-          "student_counts": "10"
+          "student_counts": 10
         }
       ]
     },
     "MIT": {
       "Grade 7": [
         {
-          "student_counts": "12"
+          "student_counts": 12
         }
       ]
     }
@@ -19,15 +19,15 @@
     "Cambridge": {
       "Grade 11": [
         {
-          "student_counts": "19"
+          "student_counts": 19
         }
       ],
       "Grade 12": [
         {
-          "student_counts": "14"
+          "student_counts": 14
         },
         {
-          "student_counts": "16"
+          "student_counts": 16
         }
       ]
     }
@@ -36,7 +36,7 @@
     "KPI": {
       "Grade 7": [
         {
-          "student_counts": "20"
+          "student_counts": 20
         }
       ]
     }
